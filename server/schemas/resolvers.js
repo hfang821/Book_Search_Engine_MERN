@@ -14,23 +14,6 @@ const resolvers = {
                 return userData;
         }
         throw new AuthenticationError('You need to be logged in!')
-    },
-
-    user: async(parent, {username}, context) => {
-        if(context.user){
-            const userData = await User.findOne({username})
-                .select('-__v -password')
-                .populate('savedBooks')
-
-                return userData;
-        }
-        throw new AuthenticationError('You need to be logged in!')
-    },
-
-    users: async()=>{
-        return User.find()
-            .select('-__v -password')
-            .populate('savedBooks')
     }
  },
     //create a user, login, save book to a user, remove a book from a user
