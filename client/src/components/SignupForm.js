@@ -32,9 +32,11 @@ const SignupForm = () => {
     try {
       //execute addUser mutation and pass in variable data from form
       const {data}= await addUser({
-        variables: {...formState}
+        variables: {...userFormData}
       });
-      Auth.login(data.addUser.token);
+      console.log(data);
+    
+      Auth.login(data.createUser.token);
 
     } catch (err) {
       console.error(err);
