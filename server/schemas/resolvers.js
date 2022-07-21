@@ -59,7 +59,8 @@ const resolvers = {
         if(context.user){
             const updatedUser = await User.findOneAndUpdate(
                 {_id: context.user._id},
-                {$pull: {savedBooks: args.bookId}},
+                //bug fixed: specify that bookId is the field you will be using to pull from your saved books
+                {$pull: {savedBooks: {bookId: args.bookId}}},
                 {new: true}
             )
             return updatedUser;
